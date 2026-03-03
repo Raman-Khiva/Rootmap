@@ -1,0 +1,688 @@
+[
+  {
+    "id": "proj-1",
+    "name": "NebulaChat",
+    "description": "Real-time AI-powered team messaging platform with smart thread summarization.",
+    "type": "SaaS App",
+    "techStack": [
+      "Next.js",
+      "Socket.io",
+      "PostgreSQL",
+      "OpenAI",
+      "Redis"
+    ],
+    "status": "In Progress",
+    "startDate": "2025-01-10",
+    "targetDate": "2025-06-30",
+    "owner": "Aryan Mehta",
+    "phases": [
+      {
+        "id": "ph-1-1",
+        "name": "Foundation & Architecture",
+        "description": "Set up project infrastructure, define system architecture, and establish development workflows.",
+        "order": 1,
+        "milestones": [
+          {
+            "id": "ms-1-1-1",
+            "title": "Project Scaffolding",
+            "tasks": [
+              {
+                "id": "t-1",
+                "title": "Initialize Next.js monorepo with Turborepo",
+                "done": true
+              },
+              {
+                "id": "t-2",
+                "title": "Configure ESLint, Prettier, and Husky pre-commit hooks",
+                "done": true
+              },
+              {
+                "id": "t-3",
+                "title": "Set up environment variable management (.env schema validation)",
+                "done": true
+              },
+              {
+                "id": "t-4",
+                "title": "Configure Tailwind CSS with custom design tokens",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-1-1-2",
+            "title": "Database Design",
+            "tasks": [
+              {
+                "id": "t-5",
+                "title": "Design ER diagram for users, channels, messages, threads",
+                "done": true
+              },
+              {
+                "id": "t-6",
+                "title": "Write Prisma schema with all relations",
+                "done": false
+              },
+              {
+                "id": "t-7",
+                "title": "Set up PostgreSQL locally and on staging (Supabase)",
+                "done": false
+              },
+              {
+                "id": "t-8",
+                "title": "Write seed script with realistic dummy data",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-1-1-3",
+            "title": "CI/CD Pipeline",
+            "tasks": [
+              {
+                "id": "t-9",
+                "title": "Configure GitHub Actions for lint + test on PR",
+                "done": false
+              },
+              {
+                "id": "t-10",
+                "title": "Set up Vercel preview deployments per branch",
+                "done": false
+              },
+              {
+                "id": "t-11",
+                "title": "Add Sentry for error monitoring in staging",
+                "done": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ph-1-2",
+        "name": "Authentication & User System",
+        "description": "Implement secure auth, user profiles, workspace management, and role-based access.",
+        "order": 2,
+        "milestones": [
+          {
+            "id": "ms-1-2-1",
+            "title": "Auth Implementation",
+            "tasks": [
+              {
+                "id": "t-12",
+                "title": "Integrate NextAuth.js with Google + GitHub OAuth",
+                "done": false
+              },
+              {
+                "id": "t-13",
+                "title": "Implement JWT refresh token rotation",
+                "done": false
+              },
+              {
+                "id": "t-14",
+                "title": "Add email/password auth with bcrypt hashing",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-1-2-2",
+            "title": "Workspace & Roles",
+            "tasks": [
+              {
+                "id": "t-15",
+                "title": "Build workspace creation and invitation flow",
+                "done": false
+              },
+              {
+                "id": "t-16",
+                "title": "Implement RBAC: Owner, Admin, Member, Guest",
+                "done": false
+              },
+              {
+                "id": "t-17",
+                "title": "Create user profile pages with avatar upload (S3)",
+                "done": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ph-1-3",
+        "name": "Real-Time Messaging Core",
+        "description": "Build the core chat engine with Socket.io, message persistence, and read receipts.",
+        "order": 3,
+        "milestones": [
+          {
+            "id": "ms-1-3-1",
+            "title": "Socket Infrastructure",
+            "tasks": [
+              {
+                "id": "t-18",
+                "title": "Set up Socket.io server with Redis adapter for horizontal scaling",
+                "done": false
+              },
+              {
+                "id": "t-19",
+                "title": "Implement room-based channel architecture",
+                "done": false
+              },
+              {
+                "id": "t-20",
+                "title": "Handle reconnection and offline message queuing",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-1-3-2",
+            "title": "Message Features",
+            "tasks": [
+              {
+                "id": "t-21",
+                "title": "Send/receive text messages with optimistic UI updates",
+                "done": false
+              },
+              {
+                "id": "t-22",
+                "title": "Implement threaded replies (parent-child message model)",
+                "done": false
+              },
+              {
+                "id": "t-23",
+                "title": "Add emoji reactions with real-time sync",
+                "done": false
+              },
+              {
+                "id": "t-24",
+                "title": "File/image upload in messages via S3 presigned URLs",
+                "done": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ph-1-4",
+        "name": "AI Features",
+        "description": "Integrate OpenAI for thread summarization, smart replies, and message search.",
+        "order": 4,
+        "milestones": [
+          {
+            "id": "ms-1-4-1",
+            "title": "Thread Summarization",
+            "tasks": [
+              {
+                "id": "t-25",
+                "title": "Build summarize API route using OpenAI GPT-4o",
+                "done": false
+              },
+              {
+                "id": "t-26",
+                "title": "Cache summaries in Redis with 1hr TTL",
+                "done": false
+              },
+              {
+                "id": "t-27",
+                "title": "Add Summarize Thread button in UI with streaming response",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-1-4-2",
+            "title": "Smart Search",
+            "tasks": [
+              {
+                "id": "t-28",
+                "title": "Implement semantic search with pgvector embeddings",
+                "done": false
+              },
+              {
+                "id": "t-29",
+                "title": "Build search UI with highlighted results",
+                "done": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "proj-2",
+    "name": "ShopFlow",
+    "description": "Headless e-commerce engine for D2C brands with inventory, orders, and analytics.",
+    "type": "E-Commerce Platform",
+    "techStack": [
+      "Remix",
+      "Shopify API",
+      "MySQL",
+      "Stripe",
+      "Cloudflare Workers"
+    ],
+    "status": "Planning",
+    "startDate": "2025-03-01",
+    "targetDate": "2025-09-15",
+    "owner": "Priya Nair",
+    "phases": [
+      {
+        "id": "ph-2-1",
+        "name": "Product Catalog System",
+        "description": "Build product management with variants, collections, and Shopify sync.",
+        "order": 1,
+        "milestones": [
+          {
+            "id": "ms-2-1-1",
+            "title": "Product Data Model",
+            "tasks": [
+              {
+                "id": "t-30",
+                "title": "Design product schema: variants, SKUs, pricing tiers",
+                "done": false
+              },
+              {
+                "id": "t-31",
+                "title": "Implement bulk product import via CSV",
+                "done": false
+              },
+              {
+                "id": "t-32",
+                "title": "Build Shopify product sync webhook handler",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-2-1-2",
+            "title": "Media Management",
+            "tasks": [
+              {
+                "id": "t-33",
+                "title": "Set up Cloudinary for product image hosting and transforms",
+                "done": false
+              },
+              {
+                "id": "t-34",
+                "title": "Implement drag-and-drop image ordering",
+                "done": false
+              },
+              {
+                "id": "t-35",
+                "title": "Auto-generate WebP variants for performance",
+                "done": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ph-2-2",
+        "name": "Checkout & Payments",
+        "description": "Stripe integration, cart logic, discount codes, and order confirmation flow.",
+        "order": 2,
+        "milestones": [
+          {
+            "id": "ms-2-2-1",
+            "title": "Cart System",
+            "tasks": [
+              {
+                "id": "t-36",
+                "title": "Build persistent cart with session + user merge on login",
+                "done": false
+              },
+              {
+                "id": "t-37",
+                "title": "Implement quantity controls and inventory validation",
+                "done": false
+              },
+              {
+                "id": "t-38",
+                "title": "Add discount code and coupon engine",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-2-2-2",
+            "title": "Stripe Checkout",
+            "tasks": [
+              {
+                "id": "t-39",
+                "title": "Integrate Stripe Payment Intents API",
+                "done": false
+              },
+              {
+                "id": "t-40",
+                "title": "Handle webhook events: payment_succeeded, refund, dispute",
+                "done": false
+              },
+              {
+                "id": "t-41",
+                "title": "Build order confirmation email with Resend",
+                "done": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ph-2-3",
+        "name": "Analytics Dashboard",
+        "description": "Real-time sales, inventory, and customer analytics for store owners.",
+        "order": 3,
+        "milestones": [
+          {
+            "id": "ms-2-3-1",
+            "title": "Sales Metrics",
+            "tasks": [
+              {
+                "id": "t-42",
+                "title": "Track GMV, AOV, conversion rate per day/week/month",
+                "done": false
+              },
+              {
+                "id": "t-43",
+                "title": "Build revenue chart with Recharts",
+                "done": false
+              },
+              {
+                "id": "t-44",
+                "title": "Add CSV export for all reports",
+                "done": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "proj-3",
+    "name": "MindMap OS",
+    "description": "Infinite canvas knowledge management tool with AI-assisted note linking.",
+    "type": "Productivity Tool",
+    "techStack": [
+      "React",
+      "tRPC",
+      "Drizzle ORM",
+      "SQLite",
+      "Anthropic API"
+    ],
+    "status": "Concept",
+    "startDate": "2025-04-01",
+    "targetDate": "2025-12-01",
+    "owner": "Dev Kapoor",
+    "phases": [
+      {
+        "id": "ph-3-1",
+        "name": "Canvas Engine",
+        "description": "Build the infinite canvas with node creation, pan, zoom, and connections.",
+        "order": 1,
+        "milestones": [
+          {
+            "id": "ms-3-1-1",
+            "title": "Canvas Primitives",
+            "tasks": [
+              {
+                "id": "t-45",
+                "title": "Implement pan and zoom with touch + mouse support",
+                "done": false
+              },
+              {
+                "id": "t-46",
+                "title": "Build node creation on double-click / keyboard shortcut",
+                "done": false
+              },
+              {
+                "id": "t-47",
+                "title": "Implement bezier curve connections between nodes",
+                "done": false
+              },
+              {
+                "id": "t-48",
+                "title": "Add node selection, multi-select, and delete",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-3-1-2",
+            "title": "Node Types",
+            "tasks": [
+              {
+                "id": "t-49",
+                "title": "Text node with inline rich text editor (TipTap)",
+                "done": false
+              },
+              {
+                "id": "t-50",
+                "title": "Image node with drag-and-drop upload",
+                "done": false
+              },
+              {
+                "id": "t-51",
+                "title": "Link node that fetches og:image and title",
+                "done": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ph-3-2",
+        "name": "AI Note Linking",
+        "description": "Use embeddings to suggest related notes and auto-generate connections.",
+        "order": 2,
+        "milestones": [
+          {
+            "id": "ms-3-2-1",
+            "title": "Embedding Pipeline",
+            "tasks": [
+              {
+                "id": "t-52",
+                "title": "Generate embeddings for each node via Anthropic API on save",
+                "done": false
+              },
+              {
+                "id": "t-53",
+                "title": "Store vectors in SQLite with sqlite-vss extension",
+                "done": false
+              },
+              {
+                "id": "t-54",
+                "title": "Build ANN search to find top-5 related nodes",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-3-2-2",
+            "title": "Suggestion UI",
+            "tasks": [
+              {
+                "id": "t-55",
+                "title": "Show Related Nodes panel on node focus",
+                "done": false
+              },
+              {
+                "id": "t-56",
+                "title": "One-click to create connection from suggestion",
+                "done": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "proj-4",
+    "name": "HireLoop",
+    "description": "End-to-end ATS for startups: job postings, applicant tracking, and AI resume scoring.",
+    "type": "HR Tool",
+    "techStack": [
+      "Vue 3",
+      "FastAPI",
+      "MongoDB",
+      "OpenAI",
+      "Twilio"
+    ],
+    "status": "In Progress",
+    "startDate": "2024-11-01",
+    "targetDate": "2025-05-01",
+    "owner": "Sneha Joshi",
+    "phases": [
+      {
+        "id": "ph-4-1",
+        "name": "Job Posting System",
+        "description": "Create and publish job listings, with custom application forms and deadlines.",
+        "order": 1,
+        "milestones": [
+          {
+            "id": "ms-4-1-1",
+            "title": "Job CRUD",
+            "tasks": [
+              {
+                "id": "t-57",
+                "title": "Build job listing creation form with rich text description",
+                "done": true
+              },
+              {
+                "id": "t-58",
+                "title": "Add job status: Draft, Active, Paused, Closed",
+                "done": true
+              },
+              {
+                "id": "t-59",
+                "title": "Implement custom application form builder (drag fields)",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-4-1-2",
+            "title": "Public Job Board",
+            "tasks": [
+              {
+                "id": "t-60",
+                "title": "Generate public-facing job board at /careers/:company-slug",
+                "done": false
+              },
+              {
+                "id": "t-61",
+                "title": "Add SEO meta tags and structured data for job postings",
+                "done": false
+              },
+              {
+                "id": "t-62",
+                "title": "Embed job board widget for company website",
+                "done": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ph-4-2",
+        "name": "Applicant Pipeline",
+        "description": "Kanban-style pipeline to move candidates through stages with notes and scoring.",
+        "order": 2,
+        "milestones": [
+          {
+            "id": "ms-4-2-1",
+            "title": "Pipeline Board",
+            "tasks": [
+              {
+                "id": "t-63",
+                "title": "Build drag-and-drop Kanban for applicant stages",
+                "done": true
+              },
+              {
+                "id": "t-64",
+                "title": "Add stage configuration (custom columns per job)",
+                "done": false
+              },
+              {
+                "id": "t-65",
+                "title": "Implement bulk actions: move, reject, email selected",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-4-2-2",
+            "title": "AI Resume Scoring",
+            "tasks": [
+              {
+                "id": "t-66",
+                "title": "Parse PDF resumes to structured JSON via OpenAI",
+                "done": false
+              },
+              {
+                "id": "t-67",
+                "title": "Score resume against job description (0-100 fit score)",
+                "done": false
+              },
+              {
+                "id": "t-68",
+                "title": "Show scoring breakdown: skills, experience, education",
+                "done": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ph-4-3",
+        "name": "Communication & Scheduling",
+        "description": "Automated email templates, interview scheduling, and SMS via Twilio.",
+        "order": 3,
+        "milestones": [
+          {
+            "id": "ms-4-3-1",
+            "title": "Email Automation",
+            "tasks": [
+              {
+                "id": "t-69",
+                "title": "Build email template editor with variable substitution",
+                "done": false
+              },
+              {
+                "id": "t-70",
+                "title": "Trigger automated emails on stage change",
+                "done": false
+              },
+              {
+                "id": "t-71",
+                "title": "Track email open rates and link clicks",
+                "done": false
+              }
+            ]
+          },
+          {
+            "id": "ms-4-3-2",
+            "title": "Interview Scheduling",
+            "tasks": [
+              {
+                "id": "t-72",
+                "title": "Integrate Google Calendar for interviewer availability",
+                "done": false
+              },
+              {
+                "id": "t-73",
+                "title": "Send candidate self-schedule links via Twilio SMS",
+                "done": false
+              },
+              {
+                "id": "t-74",
+                "title": "Auto-create Google Meet links on booking confirmation",
+                "done": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
