@@ -22,7 +22,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <TooltipProvider>{children}</TooltipProvider>
+
+          <TooltipProvider>
+          {children}
+
+        </TooltipProvider>
       </body>
     </html>
   );
