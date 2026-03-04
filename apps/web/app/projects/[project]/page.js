@@ -1,5 +1,5 @@
 'use client'
-import Link form "next/link"
+import Link from "next/link"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   Field,
@@ -47,31 +47,7 @@ export default function Page(){
   const curProject = projects[project];
   const phases = curProject?.phases || [];
   return(
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator
-              orientation="vertical"
-              className="mr-2 data-[orientation=vertical]:h-4"
-            />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Build Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-        </header>
+    <div>
         <h2>{project}</h2>
         <div className="flex flex-col gap-4 pt-20">
           {phases.map((phase,i)=>{
@@ -117,14 +93,13 @@ export default function Page(){
                 >
           {showDetails ? "Hide Details" : "Show Details"}
         </Button>
-        <Button><Link href={`/projects/${project}/${j}`}>Open</Link></Button>
+        <Button><Link href={`/projects/${project}/${i}`}>Open</Link></Button>
       </CardFooter>
     </Card>
             )})}
 
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+      </div>
   )
 }
 
