@@ -65,7 +65,7 @@ export default function Page() {
                 {milestone.title}
               </FieldLabel>
             </Field>
-            <FieldGroup className="ml-6 flex flex-col gap-20 pl-12 relative border-l-3 border-blue-600 ">
+            <FieldGroup className="ml-6 flex flex-col gap-20 pl-12 relative border-l-3 border-blue-500 ">
               {milestone.tasks.map((task, i) => (
                 <div className="my-8 flex flex-col gap-5">
                   <div
@@ -73,8 +73,8 @@ export default function Page() {
                     className="flex flex-col border-b-2 max-w-2xl pb-1"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="rounded-full bg-black absolute left-0  -translate-x-[56%]">
-                        <CircleCheckBig className="text-blue-600 z-40 " />
+                      <div className="rounded-full bg-[#171717] absolute left-0  -translate-x-[56%]">
+                        <CircleCheckBig className="text-blue-500 z-40 " />
                       </div>
                       <h4 className=" text-lg font-medium">{task.title}</h4>
                     </div>
