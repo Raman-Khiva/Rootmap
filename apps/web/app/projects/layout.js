@@ -1,4 +1,3 @@
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,29 +5,20 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import{
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
+import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
+import { AppSidebar } from "@/components/app-sidebar";
 
-
-
-import {AppSidebar} from "@/components/app-sidebar"
-
-
-
-
-
-export default function Page({children}){
-
-
-  return(
-   <SidebarProvider className="w-screen overflow-x-hidden">
-      <AppSidebar/>
+export default function Page({ children }) {
+  return (
+    <SidebarProvider className="w-screen overflow-x-hidden">
+      <AppSidebar />
       <SidebarInset className="w-full overflow-x-hidden">
         <header className="flex h-14 shrink-0 fixed top-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-14">
           <div className="flex items-center gap-2 px-4">
@@ -52,15 +42,9 @@ export default function Page({children}){
             </Breadcrumb>
           </div>
         </header>
- 
-       <div className="pt-14 w-full h-full overflow-x-hidden">
-        
-        {children}
 
-        </div>
-
+        <div className="pt-14 w-full h-full overflow-x-hidden">{children}</div>
       </SidebarInset>
-
     </SidebarProvider>
-  )
+  );
 }
