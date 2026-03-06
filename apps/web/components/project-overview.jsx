@@ -6,11 +6,10 @@ import {
   CardFooter,
   CardDescription,
 } from "@/components/ui/card";
-import { RadialProgress } from "@/components/radial-progress-bar";
 import { Badge } from "@/components/ui/badge";
 export function ProjectOverview() {
   return (
-    <Card className="w-full py-10 max-w-5xl mb-10 max-h-xl bg-[#18181b]">
+    <Card className="w-full py-10 max-w-5xl mb-10 max-h-xl bg-[#18181b77]">
       <div className="flex justify-between">
         <CardContent className="max-w-4xl w-full">
           <CardHeader>
@@ -23,7 +22,7 @@ export function ProjectOverview() {
                 Active
               </Badge>
             </div>
-            <p className="font-medium text-gray-300 text-start">
+            <p className="font-medium text-gray-400 text-start">
               This is a high-level overview of the project, including key
               milestones, timelines, and overall progress. It provides a
               snapshot of the project's status and helps stakeholders understand
