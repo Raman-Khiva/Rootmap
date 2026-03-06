@@ -92,7 +92,7 @@
   --text-secondary: #a1a1aa;
   --text-mute: #d4d4d8;
   --card-secondary: rgb(24 24 27 / 0.4);
-  --card-primary: #18181b66;
+  --card-primary: #18181b48;
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -144,7 +144,7 @@
   }
 
   h4 {
-    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+    @apply scroll-m-20 text-[21px] font-semibold;
   }
 
   h6 {
