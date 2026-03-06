@@ -1,0 +1,43 @@
+"use client";
+import projects from "@/db/projects";
+import { useParams } from "next/navigation";
+import { Calendar1, History } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+export default function Page() {
+  const params = useParams();
+  let { project, phase } = params;
+  project = Number(project);
+  phase = Number(phase);
+  const curProject = projects[project] || [];
+  const curPhase = project.phases[phase] || [];
+  return (
+    <main>
+      <header>
+        <div>
+          <div>
+            <h3>
+              Phase {phase + 1}: {curPhase.name}
+            </h3>
+            <Badge variant="outline" className="text-blue-700 bg-blue-500/60">
+              Active
+            </Badge>
+          </div>
+          <div>
+            <div>
+              <Calendar1 /> <h5>Mar 2 - Mar 3</h5>
+            </div>
+            <div>
+              <History />
+              <h5>4 updates this month</h5>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <Button variant="secondary">Edit</Button>
+        </div>
+      </header>
+    </main>
+  );
+}

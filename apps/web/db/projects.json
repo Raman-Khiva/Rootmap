@@ -15,11 +15,14 @@
         "name": "Project Foundation",
         "description": "Set up development environment and project structure.",
         "order": 1,
+        "status": "active",
+        "progress": 20,
         "milestones": [
           {
             "id": "ms-1-1",
             "title": "Repository and Tooling Setup",
             "description": "Initialize repository and configure development tooling.",
+            "progress": 33,
             "tasks": [
               {
                 "id": "t-1",
@@ -51,6 +54,7 @@
             "id": "ms-1-2",
             "title": "Database Initialization",
             "description": "Prepare the database and schema management.",
+            "progress": 0,
             "tasks": [
               {
                 "id": "t-4",
@@ -81,6 +85,7 @@
             "id": "ms-1-3",
             "title": "Frontend Base Setup",
             "description": "Prepare UI framework and styling configuration.",
+            "progress": 0,
             "tasks": [
               {
                 "id": "t-7",
@@ -114,11 +119,14 @@
         "name": "Messaging Core Development",
         "description": "Build the core real-time messaging functionality.",
         "order": 2,
+        "status": "pending",
+        "progress": 0,
         "milestones": [
           {
             "id": "ms-2-1",
             "title": "Socket Infrastructure",
             "description": "Establish real-time communication layer.",
+            "progress": 0,
             "tasks": [
               {
                 "id": "t-10",
@@ -148,6 +156,7 @@
             "id": "ms-2-2",
             "title": "Message Persistence",
             "description": "Store messages and retrieve chat history.",
+            "progress": 0,
             "tasks": [
               {
                 "id": "t-13",
@@ -176,6 +185,7 @@
             "id": "ms-2-3",
             "title": "Chat Interface",
             "description": "Develop the user-facing chat interface.",
+            "progress": 0,
             "tasks": [
               {
                 "id": "t-16",
@@ -207,11 +217,14 @@
         "name": "Deployment and Testing",
         "description": "Prepare the system for production deployment.",
         "order": 3,
+        "status": "pending",
+        "progress": 0,
         "milestones": [
           {
             "id": "ms-3-1",
             "title": "Application Testing",
             "description": "Verify functionality through automated and manual tests.",
+            "progress": 0,
             "tasks": [
               {
                 "id": "t-19",
@@ -241,6 +254,7 @@
             "id": "ms-3-2",
             "title": "Production Deployment",
             "description": "Deploy the application to production environment.",
+            "progress": 0,
             "tasks": [
               {
                 "id": "t-22",
@@ -270,6 +284,7 @@
             "id": "ms-3-3",
             "title": "Monitoring Setup",
             "description": "Add monitoring and logging tools.",
+            "progress": 0,
             "tasks": [
               {
                 "id": "t-25",
@@ -291,113 +306,6 @@
                 "title": "Set up uptime monitoring alerts",
                 "type": "setup",
                 "purpose": "Ensures application availability is monitored.",
-                "done": false
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-
-  {
-    "id": "proj-2",
-    "name": "ShopFlow",
-    "description": "Headless e-commerce management platform",
-    "type": "E-commerce Platform",
-    "techStack": ["Remix", "MySQL", "Stripe", "Cloudflare Workers"],
-    "status": "Planning",
-    "startDate": "2025-03-01",
-    "targetDate": "2025-09-01",
-    "owner": "Priya Nair",
-    "phases": [
-      {
-        "id": "ph-a",
-        "name": "Platform Setup",
-        "description": "Prepare the project structure and base services.",
-        "order": 1,
-        "milestones": [
-          {
-            "id": "ms-a1",
-            "title": "Repository Initialization",
-            "description": "Create and configure project repository.",
-            "tasks": [
-              {
-                "id": "t-a1",
-                "title": "Initialize Remix application project",
-                "type": "setup",
-                "purpose": "Remix provides the framework for building the platform.",
-                "commands": ["npx create-remix@latest"],
-                "done": false
-              },
-              {
-                "id": "t-a2",
-                "title": "Configure project linting and formatting tools",
-                "type": "configuration",
-                "purpose": "Maintains consistent code quality across the project.",
-                "done": false
-              },
-              {
-                "id": "t-a3",
-                "title": "Create initial folder structure for modules",
-                "type": "implementation",
-                "purpose": "Organizes features such as products, orders, and customers.",
-                "done": false
-              }
-            ]
-          },
-          {
-            "id": "ms-a2",
-            "title": "Database Setup",
-            "description": "Prepare database infrastructure for the platform.",
-            "tasks": [
-              {
-                "id": "t-a4",
-                "title": "Install MySQL database locally",
-                "type": "setup",
-                "purpose": "Provides persistent storage for platform data.",
-                "done": false
-              },
-              {
-                "id": "t-a5",
-                "title": "Create database schema for products and orders",
-                "type": "implementation",
-                "purpose": "Defines structure for e-commerce data.",
-                "done": false
-              },
-              {
-                "id": "t-a6",
-                "title": "Add database migration workflow",
-                "type": "configuration",
-                "purpose": "Ensures schema changes are managed safely.",
-                "done": false
-              }
-            ]
-          },
-          {
-            "id": "ms-a3",
-            "title": "Authentication System",
-            "description": "Implement user authentication for platform access.",
-            "tasks": [
-              {
-                "id": "t-a7",
-                "title": "Install authentication libraries",
-                "type": "setup",
-                "purpose": "Provides authentication utilities for login and sessions.",
-                "done": false
-              },
-              {
-                "id": "t-a8",
-                "title": "Implement user login and registration APIs",
-                "type": "implementation",
-                "purpose": "Allows users to create accounts and sign in.",
-                "done": false
-              },
-              {
-                "id": "t-a9",
-                "title": "Protect dashboard routes with authentication middleware",
-                "type": "implementation",
-                "purpose": "Prevents unauthorized access to management features.",
                 "done": false
               }
             ]

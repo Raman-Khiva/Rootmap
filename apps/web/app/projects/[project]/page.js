@@ -11,6 +11,7 @@ import {
   FieldLegend,
   FieldSet,
 } from "@/components/ui/field";
+import { PhaseCard } from "@/components/phase-card";
 import projects from "@/db/projects";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -57,66 +58,14 @@ export default function Page() {
             <LayoutGrid className="cursor-pointer" />
           </div>
         </div>
-        {phases.map((phase, i) => {
-          const [showDetails, setShowDetails] = useState(false);
-          const text = i % 3 == 1 ? "" : "text-[#a1a1a1]";
-          return (
-            <>
-              <Card
-                size="lg"
-                className="mx-auto bg-[#09090b] w-full max-w-5xl"
-                key={i}
-              >
-                <CardHeader>
-                  <h4 className={"font-semibold " + text}>
-                    Phase {i + 1}: {phase.name}
-                  </h4>
-                  <p>{phase.description}</p>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    The card component supports a size prop that can be set to
-                    &quot;sm&quot; for a more compact appearance.
-                  </p>
-                </CardContent>
-                <CardContent>
-                  {showDetails && (
-                    <FieldGroup>
-                      {phase.milestones.map((milestone, j) => {
-                        return (
-                          <Field orientation="horizontal" key={j}>
-                            <Checkbox
-                              id="finder-pref-9k2-hard-disks-ljj-checkbox"
-                              name="finder-pref-9k2-hard-disks-ljj-checkbox"
-                              defaultChecked
-                            />
-                            <FieldLabel
-                              htmlFor="finder-pref-9k2-hard-disks-ljj-checkbox"
-                              className="font-normal"
-                            >
-                              {milestone.title}
-                            </FieldLabel>
-                          </Field>
-                        );
-                      })}
-                    </FieldGroup>
-                  )}
-                </CardContent>
-                <CardFooter className="flex justify-end gap-4">
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowDetails((prev) => !prev)}
-                  >
-                    {showDetails ? "Hide Details" : "Show Details"}
-                  </Button>
-                  <Button>
-                    <Link href={`/projects/${project}/${i}`}>Open</Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </>
-          );
-        })}
+        {phases.map((phase, index) => (
+          <PhaseCard
+            key={index}
+            projectIndex={project}
+            phase={phase}
+            index={index}
+          />
+        ))}
       </div>
     </div>
   );
