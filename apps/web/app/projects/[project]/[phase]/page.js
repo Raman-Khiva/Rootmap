@@ -14,7 +14,7 @@ export default function Page() {
   const curProject = projects[project] || [];
   const curPhase = curProject.phases[phase] || [];
   return (
-    <main className="flex flex-col items-center gap-6 py-4 mx-auto px-auto w-full">
+    <main className="flex flex-col items-center gap-6 py-4 mx-auto px-auto w-full py-10">
       <header className="w-full max-w-5xl className flex flex-col gap-5">
         <div className="flex  justify-between w-full px-1">
           <div className="flex flex-col ">
@@ -42,19 +42,19 @@ export default function Page() {
           </div>
         </div>
         <div className="grid grid-cols-4 gap-4 mt-6">
-          <Card className="px-4">
+          <Card className="px-4 bg-card-primary">
             <CardTitle>milestones</CardTitle>
             <h2>24</h2>
           </Card>
-          <Card className="px-4">
+          <Card className="px-4 bg-card-primary">
             <CardTitle>milestones</CardTitle>
             <h2>24</h2>
           </Card>
-          <Card className="px-4">
+          <Card className="px-4 bg-card-primary">
             <CardTitle>milestones</CardTitle>
             <h2>24</h2>
           </Card>
-          <Card className="px-4">
+          <Card className="px-4 bg-card-primary">
             <CardTitle>milestones</CardTitle>
             <h2>24</h2>
           </Card>
