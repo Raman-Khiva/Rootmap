@@ -1,18 +1,12 @@
-import logger from "./utils/logger.js";
-
 import express from "express";
-import cors from "cors";
+import dotenv from "dotenv";
 
+dotenv.config();
+const PORT = process.env.PORT || 4000;
 const app = express();
 
-app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000" }));
-
-app.get("/api/health", (req, res) => {
-  logger.info("HEALTH : 100%");
-  res.json({ health: "100%" });
-});
-
-app.listen(5000, () => {
-  logger.success("Server started successfully on port 5000");
+app.listen(PORT, () => {
+  console.log(`API is running on port ${PORT}`);
+  console.log("PORT:");
+  console.log("DATABASE_URL", process.env.DATABASE_URL);
 });
