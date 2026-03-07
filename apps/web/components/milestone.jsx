@@ -10,8 +10,8 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 export function Milestone() {
   return (
-    <Card className="w-full bg-card-primary max-w-5xm p-0 overflow-hidden">
-      <CardHeader className="bg-card w-full px-8 py-6 flex m-0  justify-between items-center">
+    <Card className="w-full bg-[#18181b33] gap-0 max-w-5xm p-0 overflow-hidden">
+      <CardHeader className="bg-card-primary w-full px-8 py-6 flex m-0  justify-between items-center">
         <CardTitle className="flex gap-3 items-center">
           <h4 className="font-bold tracking-wide">Title</h4>
           <Badge
@@ -28,7 +28,7 @@ export function Milestone() {
           <Progress value={60} className="w-full max-w-24" />
         </div>
       </CardHeader>
-      <CardContent className="flex flex-col p-6 m-0 pt-0 gap-6">
+      <CardContent className="grid grid-cols-1 grid-rows-auto p-0 m-0 ">
         <Task />
         <Task />
         <Task />
