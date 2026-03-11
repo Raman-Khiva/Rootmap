@@ -2,20 +2,20 @@ import logger from "../utils/logger.js";
 import prisma from "../config/prisma.js";
 
 export const syncUser = async (req, res) => {
-  logger.enter(syncUser);
+  logger.enter("Sync User Controller");
   try {
-    const clerkId = req.auth.userId;
-    const { data } = req.body;
-    const { email } = data;
-
+    const auth = req.auth();
+    logger.info(`Received auth() object: ${JSON.stringify(auth)}`);
+    const clerkId = auth.userId;
     let user = await prisma.user.findUnique({
-      clerkId: clerkId,
+      where: {
+        clerkId: clerkId,
+      },
     });
 
     if (!user) {
       user = await prisma.user.create({
-        clerkId: clerkId,
-        email: email,
+        data: { clerkId: clerkId },
       });
     }
     res.json({
@@ -29,7 +29,7 @@ export const syncUser = async (req, res) => {
     res.json({
       status: "error",
       message: "Failed to sync user",
-      error: error,
+      error: error.message,
     });
   }
 };

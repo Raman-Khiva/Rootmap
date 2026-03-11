@@ -6,21 +6,26 @@ export default function useSyncUser() {
 
   useEffect(() => {
     const syncUser = async () => {
-      const token = await getToken();
+      try {
+        const token = await getToken();
+        console.warn("Syncing user with token:", token);
+        if (!isSignedIn || !token) return;
 
-      const rawres = await fetch(`${"http://localhost:5000"}/api/user/sync`, {
-        method: "POST",
-        body: JSON.stringify({
-          email: "example@text",
-        }),
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+        const rawres = await fetch(
+          `${"http://20.204.216.223:5000"}/api/user/sync`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          },
+        );
 
-      const res = await rawres.json();
-      console.log(res);
+        const res = await rawres.json();
+        console.log(res);
+      } catch (err) {
+        console.error("Error syncing user:", err);
+      }
     };
     syncUser();
   }, [isLoaded, isSignedIn]);

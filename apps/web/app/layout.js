@@ -5,20 +5,18 @@ import { useEffect } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ClerkProvider } from "@clerk/nextjs";
 import StoreProvider from "@/store/provider";
-//import useSyncUser from "@/hooks/syncUser";
+import useSyncUser from "@/hooks/syncUser";
 import { useAuth } from "@clerk/nextjs";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-//const SyncUserWrapper = ({ children }) => {
-//  useSyncUser();
-//  return <>{children}</>;
-//};
-//
-//
-//
+const SyncUserWrapper = ({ children }) => {
+  useSyncUser();
+  return <>{children}</>;
+};
+
 const Logger = ({ children }) => {
   const { getToken, user, isSignedUp, isLoading } = useAuth();
   useEffect(() => {
@@ -66,8 +64,7 @@ export default function RootLayout({ children }) {
         <TooltipProvider>
           <ClerkProvider>
             <StoreProvider>
-              {/*              <SyncUserWrapper>{children}</SyncUserWrapper> */}
-              <Logger>{children}</Logger>
+              <SyncUserWrapper>{children}</SyncUserWrapper>
             </StoreProvider>
           </ClerkProvider>
         </TooltipProvider>
