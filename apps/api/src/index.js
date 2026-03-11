@@ -5,6 +5,7 @@ import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
 import userRouter from "./routes/user.route.js";
 import clerkAuth from "./middlewares/auth.middleware.js";
+import testRouter from "./routes/test.route.js";
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
@@ -20,6 +21,7 @@ app.use(
 );
 
 app.use("/api/user", clerkAuth, userRouter);
+app.use("/api/test", testRouter);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({
