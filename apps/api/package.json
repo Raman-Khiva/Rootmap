@@ -11,6 +11,8 @@
     "dev": "nodemon src/index.js"
   },
   "dependencies": {
+    "@clerk/express": "^2.0.1",
+    "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
     "cors": "^2.8.6",
     "dotenv": "^16.0.3",

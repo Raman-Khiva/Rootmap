@@ -1,12 +1,62 @@
 import express from "express";
 import dotenv from "dotenv";
-
+import logger from "./utils/logger.js";
+import { clerkMiddleware } from "@clerk/express";
+import cors from "cors";
+import userRouter from "./routes/user.route.js";
+import clerkAuth from "./middlewares/auth.middleware.js";
 dotenv.config();
+
 const PORT = process.env.PORT || 4000;
 const app = express();
+app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log(`API is running on port ${PORT}`);
-  console.log("PORT:", PORT);
-  console.log("DATABASE_URL", process.env.DATABASE_URL);
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
+app.use("/api/user", clerkAuth, userRouter);
+
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "server connection sucessfull",
+    health: "100%",
+  });
+});
+app.use((req, res) => {
+  res
+    .status(404)
+    .json({ sucess: false, message: "Route not found", error: "Not Found" });
+});
+
+app.use((err, req, res, next) => {
+  logger.error(`Error: ${err.message}`);
+  res
+    .status(err.status || 500)
+    .json({ error: err.message || "Internal server error" });
+});
+
+const server = app.listen(PORT, () => {
+  logger.success(`API is running on port ${PORT}`);
+});
+
+process.on("SIGTERM", () => {
+  logger.info("SIGTERM received, shutting down gracefully...");
+  server.close(() => {
+    logger.success("Server closed");
+    process.exit(0);
+  });
+});
+
+process.on("SIGINT", () => {
+  logger.info("SIGINT received, shutting down gracefully...");
+  server.close(() => {
+    logger.success("Server closed");
+    process.exit(0);
+  });
 });
