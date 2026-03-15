@@ -1,13 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
+
+dotenv.config();
 import logger from "./utils/logger.js";
 import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
 import userRouter from "./routes/user.route.js";
 import clerkAuth from "./middlewares/auth.middleware.js";
 import testRouter from "./routes/test.route.js";
-dotenv.config();
-
+import projectsRouter from "./routes/projects.route.js";
+import queriesRouter from "./routes/queries.route.js";
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
@@ -22,7 +24,8 @@ app.use(
 
 app.use("/api/user", clerkAuth, userRouter);
 app.use("/api/test", testRouter);
-
+app.use("/api/queries", queriesRouter);
+app.use("/api/projects", clerkAuth, projectsRouter);
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
