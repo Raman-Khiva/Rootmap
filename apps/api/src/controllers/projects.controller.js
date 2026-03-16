@@ -1,6 +1,51 @@
 import prisma from "../config/prisma.js";
 import logger from "../utils/logger.js";
 
+export const getProjects = async (req, res) => {
+  logger.enter("Get Projects Controller");
+  try {
+    let { userId } = req.auth();
+    const clerkId = userId;
+    logger.info(`Finding user with clerkId ${clerkId} in the database`);
+    let user = await prisma.user.findUnique({
+      where: {
+        clerkId: clerkId,
+      },
+    });
+    if (!user) {
+      logger.error(`User with clerkId ${clerkId} not found`);
+      res.status(404).json({
+        success: false,
+        message: " User not found",
+        error: "NOT FOUND",
+      });
+    }
+    userId = user.id;
+
+    const projects = await prisma.project.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+    logger.success(
+      `Projects fetched successfully from db for user with clerkId ${clerkId}`,
+    );
+    logger.info(`Fetched projects: ${JSON.stringify(projects)}`);
+    res.status(200).json({
+      success: true,
+      message: "Projects fetched successfully",
+      data: { projects: projects },
+    });
+  } catch (error) {
+    logger.error(`Error while fetching projects. ERROR: ${error.message}`);
+    res.status(500).json({
+      success: false,
+      message: "Error while fetching projects",
+      error: error.message,
+    });
+  }
+};
+
 export const addProject = async (req, res) => {
   logger.enter("Add Project Controller");
   try {
@@ -24,6 +69,19 @@ export const addProject = async (req, res) => {
     const createdProject = await prisma.project.create({
       data: {
         ...project,
+        phases: {
+          create: project.phases.map((phase) => ({
+            ...phase,
+            milestones: {
+              create: phase.milestones.map((milestone) => ({
+                ...milestone,
+                tasks: {
+                  create: milestone.tasks,
+                },
+              })),
+            },
+          })),
+        },
         user: {
           connect: { id: userId },
         },

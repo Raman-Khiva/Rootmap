@@ -1,9 +1,5 @@
 import Groq from "groq-sdk";
 
-const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
-console.warn("GROQ API Key:", apiKey);
-const groq = new Groq({ apiKey: apiKey, dangerouslyAllowBrowser: true });
-
 const generatePrompt = (query) => {
   const prompt = `You are a system that generates structured software project plans.
 
@@ -110,6 +106,9 @@ PROJECT IDEA = ${query}`;
 };
 
 export const useGroq = () => {
+  const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
+  console.warn("GROQ API Key:", apiKey);
+  const groq = new Groq({ apiKey: apiKey, dangerouslyAllowBrowser: true });
   const generate = async (query) => {
     console.log("Generating project plan for idea:", query);
     try {
