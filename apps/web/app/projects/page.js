@@ -1,6 +1,7 @@
 "use client";
+import { useEffect } from "react";
+import { useGetProjectsQuery } from "@/features/projects/projectsApi";
 import testProject from "@/db/testProject";
-import { useAddProjectMutation } from "@/features/projects/projectsApi";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -14,7 +15,6 @@ import {
 } from "@/components/ui/card";
 
 import { AddProjectModal } from "@/components/add-project-model";
-import projects from "@/db/projects";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -33,12 +33,24 @@ import {
 
 export default function Page() {
   const [openModal, osetOpenModal] = useState(false);
-  const [addProject, { isLoading }] = useAddProjectMutation();
-  const handleAddProject = async () => {
-    console.warn("Add project button clicked");
-    const res = await addProject(testProject);
-    console.log("Add project response:", res);
-  };
+  const { data, isLoading } = useGetProjectsQuery();
+  useEffect(() => {
+    if (data) {
+      console.warn("this is query data");
+      console.log("data", data);
+    }
+  }, [data, isLoading]);
+  if (isLoading || !data) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <h2>loading Projects</h2>
+      </div>
+    );
+  }
+
+  const projects = data.projects || [];
+  console.warn("data from query", data);
+  console.warn("projects from query", projects);
   return (
     <div className="grid lg:grid-cols-4 grid-cols-3   gap-4 p-4 pt-0 gap-5 px-6">
       <div className="pt-8 pb-4 col-span-3 lg:col-span-4 flex items-center justify-between">
@@ -47,7 +59,6 @@ export default function Page() {
         </div>
         <div className="flex items-center gap-5">
           <AddProjectModal />
-          <Button onClick={handleAddProject}>Add Project</Button>
         </div>
       </div>
       {projects.map((project, i) => (

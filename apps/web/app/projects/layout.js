@@ -1,3 +1,5 @@
+"use client";
+import { useEffect } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { useGetProjectsQuery } from "@/features/projects/projectsApi";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -16,6 +19,7 @@ import {
 import { AppSidebar } from "@/components/app-sidebar";
 
 export default function Page({ children }) {
+  const { isLoading } = useGetProjectsQuery();
   return (
     <SidebarProvider className="w-screen overflow-x-hidden">
       <AppSidebar />

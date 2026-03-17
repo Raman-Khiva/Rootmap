@@ -22,7 +22,6 @@ export const api = createApi({
     baseUrl: serverUrl,
     prepareHeaders: async (headers) => {
       const token = await getToken();
-      console.log("Preparing headers for API request. Token:", token);
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
