@@ -4,7 +4,9 @@ export const projectsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProjects: builder.query({
       query: () => "/projects",
-      transformResponse: (response) => response.data.projects,
+      transformResponse: (response) => {
+        response.data;
+      },
       providesTags: ["Projects"],
     }),
     addProject: builder.mutation({

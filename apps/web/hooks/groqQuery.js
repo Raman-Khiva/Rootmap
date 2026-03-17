@@ -1,4 +1,5 @@
 import Groq from "groq-sdk";
+import { useAddProjectMutation } from "@/features/projects/projectsApi";
 
 const generatePrompt = (query) => {
   const prompt = `You are a system that generates structured software project plans.
@@ -18,8 +19,8 @@ Project
 - type: string (category such as SaaS Application, CLI Tool, Web App, Mobile App)
 - techStack: string[] (list of technologies used in the project)
 - status: string (project state such as "planning", "active", "completed")
-- startDate: ISO date string
-- targetDate: ISO date string
+- startDate: strict ISO format date string (e.g., "2024-01-01T00:00:00Z")
+- targetDate: strict ISO format date string (e.g., "2024-06-30T00:00:00Z")
 - owner: string (name of project creator)
 - phases: Phase[]
 
@@ -123,10 +124,8 @@ export const useGroq = () => {
         ],
       });
       console.log("Raw GROQ Response:", result);
-      const answer = await result.choices[0].message.content;
-      console.log("GROQ Query Result:", answer);
-
-      return answer;
+      const groqGeneratedProject = await result.choices[0].message.content;
+      return groqGeneratedProject;
     } catch (error) {
       console.error("Error executing GROQ query:", error);
       return null;

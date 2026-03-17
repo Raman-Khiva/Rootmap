@@ -2,6 +2,7 @@
 import { useGroq } from "@/hooks/groqQuery";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import testProject from "@/db/testProject";
 import {
   Dialog,
   DialogClose,
@@ -19,13 +20,17 @@ import { Label } from "@/components/ui/label";
 export function AddProjectModal() {
   const [projectIdea, setProjectIdea] = useState("A project management saas");
   const { generate } = useGroq();
+
   const handleSubmit = async (e) => {
     console.log("entering form submit");
-
     console.log("Project Idea:", projectIdea);
-    const result = await generate(projectIdea);
-    console.log("GROQ Result:", result);
+    let groqGeneratedProject = await generate(projectIdea);
+    console.warn("Type of groqGeneratedProject:", typeof groqGeneratedProject);
+    console.log("GROQ generated project:", groqGeneratedProject);
+    groqGeneratedProject = JSON.parse(groqGeneratedProject);
+    console.log("Parsed GROQ project:", groqGeneratedProject);
   };
+
   return (
     <Dialog>
       <form>

@@ -26,6 +26,15 @@ export const getProjects = async (req, res) => {
       where: {
         userId: userId,
       },
+      include: {
+        phases: {
+          include: {
+            milestones: {
+              include: { tasks: true },
+            },
+          },
+        },
+      },
     });
     logger.success(
       `Projects fetched successfully from db for user with clerkId ${clerkId}`,
@@ -52,6 +61,8 @@ export const addProject = async (req, res) => {
     let { userId } = req.auth();
     const clerkId = userId;
     const { project } = req.body;
+    logger.info(`Received project data: ${project}`);
+    logger.info(`Finding user with clerkId ${clerkId} in the database`);
     const user = await prisma.user.findUnique({
       where: {
         clerkId: clerkId,
@@ -70,13 +81,13 @@ export const addProject = async (req, res) => {
       data: {
         ...project,
         phases: {
-          create: project.phases.map((phase) => ({
+          create: (project.phases || []).map((phase) => ({
             ...phase,
             milestones: {
-              create: phase.milestones.map((milestone) => ({
+              create: (phase.milestones || []).map((milestone) => ({
                 ...milestone,
                 tasks: {
-                  create: milestone.tasks,
+                  create: milestone.tasks || [],
                 },
               })),
             },

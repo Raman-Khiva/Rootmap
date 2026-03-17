@@ -1,4 +1,6 @@
 "use client";
+import testProject from "@/db/testProject";
+import { useAddProjectMutation } from "@/features/projects/projectsApi";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -12,7 +14,6 @@ import {
 } from "@/components/ui/card";
 
 import { AddProjectModal } from "@/components/add-project-model";
-
 import projects from "@/db/projects";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
@@ -32,14 +33,21 @@ import {
 
 export default function Page() {
   const [openModal, osetOpenModal] = useState(false);
+  const [addProject, { isLoading }] = useAddProjectMutation();
+  const handleAddProject = async () => {
+    console.warn("Add project button clicked");
+    const res = await addProject(testProject);
+    console.log("Add project response:", res);
+  };
   return (
     <div className="grid lg:grid-cols-4 grid-cols-3   gap-4 p-4 pt-0 gap-5 px-6">
       <div className="pt-8 pb-4 col-span-3 lg:col-span-4 flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold">Projects</h2>
         </div>
-        <div>
+        <div className="flex items-center gap-5">
           <AddProjectModal />
+          <Button onClick={handleAddProject}>Add Project</Button>
         </div>
       </div>
       {projects.map((project, i) => (
