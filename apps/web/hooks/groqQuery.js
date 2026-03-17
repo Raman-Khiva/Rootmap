@@ -62,7 +62,8 @@ IMPORTANT RULES
 OUTPUT FORMAT
 -----------------------
 
-output must strictly follow this JSON structure with no additional text:
+output must strictly follow this JSON structure and should be praseable  with no additional text:
+cross check the output to follow json structure
 Return a JSON object with this structure:
 
 {
@@ -109,7 +110,6 @@ PROJECT IDEA = ${query}`;
 
 export const useGroq = () => {
   const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
-  console.warn("GROQ API Key:", apiKey);
   const groq = new Groq({ apiKey: apiKey, dangerouslyAllowBrowser: true });
   const generate = async (query) => {
     console.log("Generating project plan for idea:", query);

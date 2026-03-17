@@ -2,6 +2,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { useEffect } from "react";
+import { setTokenFn } from "@/services/api";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ClerkProvider } from "@clerk/nextjs";
 import StoreProvider from "@/store/provider";
@@ -15,6 +16,15 @@ const geistSans = Geist({
 const SyncUserWrapper = ({ children }) => {
   useSyncUser();
   return <>{children}</>;
+};
+
+const ClerkTokenProvider = () => {
+  const { getToken } = useAuth();
+  useEffect(() => {
+    setTokenFn(getToken);
+  }, [getToken]);
+
+  return null;
 };
 
 const Logger = ({ children }) => {
@@ -64,7 +74,10 @@ export default function RootLayout({ children }) {
         <TooltipProvider>
           <ClerkProvider>
             <StoreProvider>
-              <SyncUserWrapper>{children}</SyncUserWrapper>
+              <SyncUserWrapper>
+                <ClerkTokenProvider />
+                {children}
+              </SyncUserWrapper>
             </StoreProvider>
           </ClerkProvider>
         </TooltipProvider>
