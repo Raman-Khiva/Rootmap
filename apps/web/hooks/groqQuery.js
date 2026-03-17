@@ -62,6 +62,7 @@ IMPORTANT RULES
 OUTPUT FORMAT
 -----------------------
 
+output must strictly follow this JSON structure with no additional text:
 Return a JSON object with this structure:
 
 {
@@ -116,6 +117,7 @@ export const useGroq = () => {
       const prompt = generatePrompt(query);
       const result = await groq.chat.completions.create({
         model: "openai/gpt-oss-120b",
+        max_tokens: 8000,
         messages: [
           {
             role: "user",
