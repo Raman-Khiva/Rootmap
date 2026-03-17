@@ -1,4 +1,5 @@
 "use client";
+import { useGetProjectsQuery } from "@/features/projects/projectsApi";
 import Link from "next/link";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ProjectOverview } from "@/components/project-overview";
@@ -12,7 +13,6 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { PhaseCard } from "@/components/phase-card";
-import projects from "@/db/projects";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,8 +43,17 @@ import {
 import { useState } from "react";
 
 export default function Page() {
+  const { data, isLoading } = useGetProjectsQuery();
   const params = useParams();
   let { project } = params;
+  if (isLoading || !data) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <h2>loading Project</h2>
+      </div>
+    );
+  }
+  const projects = data.projects || [];
   const curProject = projects[project];
   const phases = curProject?.phases || [];
   return (
