@@ -1,5 +1,5 @@
 "use client";
-import projects from "@/db/projects";
+import { useGetProjectsQuery } from "@/features/projects/projectsApi";
 import { useParams } from "next/navigation";
 import { Calendar1, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,12 +7,22 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardTitle } from "@/components/ui/card";
 import { Milestone } from "@/components/milestone";
 export default function Page() {
+  const { data, isLoading } = useGetProjectsQuery();
   const params = useParams();
   let { project, phase } = params;
+
+  if (isLoading || !data) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <h2>loading Project</h2>
+      </div>
+    );
+  }
+  const projects = data.projects || [];
   project = Number(project);
   phase = Number(phase);
   const curProject = projects[project] || [];
-  const curPhase = curProject.phases[phase] || [];
+  const curPhase = curProject?.phases[phase] || [];
   return (
     <main className="flex flex-col items-center gap-6 py-4 mx-auto px-auto w-full py-10">
       <header className="w-full max-w-5xl className flex flex-col gap-5">
@@ -63,8 +73,10 @@ export default function Page() {
           <hr />
         </div>
       </header>
-      <content className="w-full max-w-5xl">
-        <Milestone />
+      <content className="w-full flex flex-col gap-10 max-w-5xl">
+        {curPhase?.milestones?.map((milestone, i) => (
+          <Milestone milestone={milestone} key={i} />
+        ))}
       </content>
     </main>
   );

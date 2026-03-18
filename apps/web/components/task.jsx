@@ -11,14 +11,14 @@ import {
   Pin,
 } from "lucide-react";
 
-function Overview() {
+function Overview({ task }) {
   return (
     <section className="grid grid-cols-2 gap-6">
       <div className="flex flex-col gap-2">
         <h6 className="text-sm">Purpose:</h6>
         <p>
-          Secure API endpoints using JWT tokens and implement role-based access
-          control for the dashboard routes.
+          {task.purpose ||
+            "Implement authentication middleware for API routes."}
         </p>
       </div>
       <div className="flex flex-col justify-between gap-3">
@@ -26,7 +26,7 @@ function Overview() {
           <h6>Type</h6>
           <div className="flex items-center gap-2">
             <Code size={16} className="text-violet-600 font-bold" />
-            <p className="font-medium">Dev</p>
+            <p className="font-medium">{task.type || "Dev"}</p>
           </div>
         </div>
         <div className="flex justify-between items-end border-b-2 px-1 pb-1 ">
@@ -140,12 +140,6 @@ function Notes() {
   );
 }
 
-const options = [
-  { title: "Overview", value: <Overview /> },
-  { title: "Execution History", value: <ExeHistory /> },
-  { title: "Notes", value: <Notes /> },
-];
-
 function CollapsedTask({ setOpenTask, className }) {
   return (
     <main
@@ -159,13 +153,18 @@ function CollapsedTask({ setOpenTask, className }) {
   );
 }
 
-export function Task() {
+export function Task({ task }) {
   const [selectedTitle, setSelectedTitle] = useState("Overview");
   const [openTask, setOpenTask] = useState(true);
+  const options = [
+    { title: "Overview", value: <Overview task={task} /> },
+    { title: "Execution History", value: <ExeHistory /> },
+    { title: "Notes", value: <Notes /> },
+  ];
   return (
     <>
       {openTask ? (
-        <Card className="my-3 mx-5 first:mt-5 last:mb-4 bg-card-primary  max-w-5xl flex flex-col gap-9 transition transition-all ease-out duration-300">
+        <Card className="my-3 mx-5 first:mt-6 last:mb-6  max-w-5xl flex flex-col gap-9 transition transition-all ease-out duration-300">
           <CardHeader
             className="flex justify-between items-start w-full cursor-pointer"
             onClick={() => setOpenTask(false)}
@@ -176,7 +175,7 @@ export function Task() {
               </div>
               <div className="flex flex-col justify-start gap-1">
                 <h5 className="text-xl font-semibold tracking-wide">
-                  Implement Auth Middleware
+                  {task.title || "Implement Auth Middleware"}
                 </h5>
                 <div className="flex items-center gap-4">
                   <p className="text-text-secondary text-[13px] font-semibold">

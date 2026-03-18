@@ -59,7 +59,11 @@ export default function Page() {
   return (
     <div>
       <div className="flex flex-col items-center gap-6 py-4">
-        <ProjectOverview />
+        <ProjectOverview
+          owner={curProject?.owner}
+          targetDate={curProject?.targetDate}
+          description={curProject?.description}
+        />
         <div className="flex justify-between w-full max-w-5xl px-1">
           <h4>Project phases</h4>
           <div className="flex gap-3">

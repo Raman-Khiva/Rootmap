@@ -62,7 +62,11 @@ export default function Page() {
         </div>
       </div>
       {projects.map((project, i) => (
-        <Card size="sm" className="mx-auto w-full max-w-sm" key={i}>
+        <Card
+          size="sm"
+          className="mx-auto w-full flex flex-col justify-between max-w-sm"
+          key={i}
+        >
           <CardHeader>
             <CardTitle>{project.name}</CardTitle>
             <CardDescription>{project.type}</CardDescription>

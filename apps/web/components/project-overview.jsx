@@ -7,7 +7,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-export function ProjectOverview() {
+export function ProjectOverview({ description, techStack, targetDate, owner }) {
   return (
     <Card className="w-full py-10 max-w-5xl mb-10 max-h-xl bg-[#18181b77]">
       <div className="flex justify-between">
@@ -23,10 +23,14 @@ export function ProjectOverview() {
               </Badge>
             </div>
             <p className="font-medium text-gray-400 text-start">
-              This is a high-level overview of the project, including key
-              milestones, timelines, and overall progress. It provides a
-              snapshot of the project's status and helps stakeholders understand
-              the current state of affairs.
+              {description || (
+                <>
+                  This is a high-level overview of the project, including key
+                  milestones, timelines, and overall progress. It provides a
+                  snapshot of the project's status and helps stakeholders
+                  understand the current state of affairs.
+                </>
+              )}
             </p>
           </CardHeader>
           <CardFooter className="mt-8 flex items-center gap-8">
@@ -38,11 +42,13 @@ export function ProjectOverview() {
             </div>
             <div className="flex flex-col gap-1">
               <h6 className="text-xs font-bold leading-tighter">OWNER</h6>
-              <p className="font-medium ">Old Owner</p>
+              <p className="font-medium ">{owner || <span>OLD OWNER</span>}</p>
             </div>
             <div className="flex flex-col gap-1">
               <h6 className="text-xs font-bold leading-tighter">TARGET DATE</h6>
-              <p className="font-medium">Mar 10, 2026</p>
+              <p className="font-medium">
+                {targetDate || <span>Mar 30,2025</span>}
+              </p>
             </div>
           </CardFooter>
         </CardContent>
